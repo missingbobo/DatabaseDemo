@@ -61,7 +61,7 @@ public class DBHelper extends SQLiteOpenHelper {
         value.put("avatar", item.getAvatar());
         value.put("gender", item.getGender());
         value.put("birth", item.getBirth());
-        db.update("births", value, "id=" + item.getId(), null);
+        db.update("births", value, "id=?", new String[]{item.getId() + ""});
     }
 
 
@@ -69,7 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues value = new ContentValues();
         value.put("id", id);
-        db.delete("births", "id=" + id, null);
+        db.delete("births", "id=", new String[]{id + ""});
     }
 
     public ArrayList<Person> getItems() {
